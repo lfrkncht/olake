@@ -41,9 +41,10 @@ const (
 	Postgres DriverType = "postgres"
 	MySQL    DriverType = "mysql"
 	Oracle   DriverType = "oracle"
+	MSSQL    DriverType = "mssql"
 	Kafka    DriverType = "kafka"
 )
 
-var RelationalDrivers = []DriverType{Postgres, MySQL, Oracle}
+var RelationalDrivers = []DriverType{Postgres, MySQL, Oracle, MSSQL}
 
 var NonRetryableErrors = []string{DestError, "context canceled", NoRecordsFoundError, LSNNotUpdatedError, "lsn mismatch"}

@@ -24,6 +24,8 @@ func QuoteIdentifier(identifier string, driver constants.DriverType) string {
 		return fmt.Sprintf("%q", identifier)
 	case constants.Oracle:
 		return fmt.Sprintf("%q", identifier)
+	case constants.MSSQL:
+		return fmt.Sprintf("[%s]", identifier) // SQL Server uses square brackets for quoting identifiers
 	default:
 		return identifier
 	}
@@ -38,6 +40,8 @@ func GetPlaceholder(driver constants.DriverType) func(int) string {
 		return func(i int) string { return fmt.Sprintf("$%d", i) }
 	case constants.Oracle:
 		return func(i int) string { return fmt.Sprintf(":%d", i) }
+	case constants.MSSQL:
+		return func(i int) string { return fmt.Sprintf("@p%d", i) }
 	default:
 		return func(_ int) string { return "?" }
 	}
